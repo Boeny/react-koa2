@@ -1,0 +1,1 @@
+exports.INITIAL_STATE = require('immutable').Map();

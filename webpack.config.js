@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './src/index.jsx'
+    './client/index.jsx'
   ],
   module: {
     loaders: [
@@ -17,7 +17,6 @@ module.exports = {
     ]
   },
   
-  watch: true,
   devtool: 'source-map',
   
   resolve: {
