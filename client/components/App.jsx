@@ -1,36 +1,33 @@
-import React from 'react';
-import { List } from 'immutable';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
-export default class App extends React.Component
+class App extends React.Component
 {
-  static get propTypes () {
+  static get propTypes() {
     data: PropTypes.Array
   }
-  
-  constructor (props) {
-    super(props);
-    this.state = {data: List()};
-    this.fields = ['postId','id','name','email','body'];
+
+  constructor(props) {
+    super(props)
+    this.fields = ['postId', 'id', 'name', 'email', 'body']
   }
-  
-  componentDidMount () {
-    this.setState((prevState, props) => ({data: List(props.data)}));
-  }
-  
-  render () {
+
+  render() {
     return (
-      <div className="container">
-      {
-        this.state.data.toArray().map((row) => {
+      <div className='container'>
+        {
+        this.props.data.map((row) => {
           return (
-            <div key={row.id} className="comment">
+            <div key={row.id} className='comment'>
               { this.fields.map((f) => <div key={f} className={f}>{ row[f] }</div>) }
             </div>
           )
         })
       }
       </div>
-    );
+    )
   }
 }
+
+export default connect(state => ( {data: state.toArray()} ))(App)// mapStateToProps
