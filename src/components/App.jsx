@@ -30,4 +30,4 @@ class App extends React.Component
   }
 }
 
-export default connect(state => ( {data: state.toArray()} ))(App)// mapStateToProps
+export default connect(state => ({data: state.toArray()}))(App)// mapStateToProps

@@ -2,7 +2,7 @@ const Uglify = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: [
-    './client/index.jsx'
+    './src/client/index.jsx'
   ],
   module: {
     loaders: [
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   plugins: [
-    //new Uglify()
+    new Uglify()
   ],
 
   devtool: 'source-map',
@@ -32,6 +32,6 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'index.min.js'
+    filename: 'index.js'
   }
 }
