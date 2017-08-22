@@ -3,10 +3,9 @@
   "version": "0.0.2",
   "scripts": {
     "build:index": "webpack",
-    "build:app": "babel --plugins transform-react-jsx src/middle/app.jsx -o src/middle/app.js",
+    "build:app": "babel --plugins transform-react-jsx src/middle/app/index.jsx -o src/middle/app/index.js",
     "build:comp": "babel --plugins transform-react-jsx src/components -d src/components",
     "build": "npm run build:index && npm run build:app && npm run build:comp",
-    
     "test": "mocha src/**/*.spec.js",
     "start": "node src/server.js"
   },
@@ -15,6 +14,7 @@
     "immutable": "^3.8.1",
     "koa": "^2.3.0",
     "koa-router": "^7.2.1",
+    "normalizr": "^3.2.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",

@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import {Provider} from 'react-redux'
-import App from '../components/App'
-import store from './store'
+const App = require(SRC + 'components/App')
+const store = require(SRC + 'middle/store')
 
 module.exports = (data) => {
   store.dispatch({type: 'setEntries', data: data})
