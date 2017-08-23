@@ -1,3 +1,4 @@
 module.exports = {
-  setEntries: require('./setEntries')
+  setEntries: require('./setEntries'),
+  searchEntries: require('./searchEntries')
 }

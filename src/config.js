@@ -1,3 +1,4 @@
+// все пути считаются относительно ROOT/src/
 module.exports = {
   server: {
     port: 3000
@@ -5,6 +6,7 @@ module.exports = {
   
   data: {
     url: 'http://jsonplaceholder.typicode.com/comments'
+    pageSize: 15
   },
   
   layouts: {

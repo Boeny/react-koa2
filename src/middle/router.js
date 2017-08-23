@@ -1,29 +1,29 @@
 const routes = require('./routes')
 const Router = require('koa-router')
 const store  = require('./store')
+const config = require(SRC + 'config')
 
 require('./store/configure')(store)
 
-Comment.store = store;
 const router = new Router()
 
 router
-  .get('/', async (ctx, next) => {
-    ctx.body = routes.template()
+  .get('/', async (ctx) => {
+    ctx.body = routes.mainContent()
   })
-  .get('/index.js', async (ctx, next) => {
-    ctx.body = routes.js()
+  
+  .get('/index.js', async (ctx) => {
+    ctx.body = routes.bundle()
   })
-  .get('/post/:id/comments/:page', async (ctx, next) => {
-      let postId = +ctx.params.id;
-      let page = ctx.params.page || 1;
-      let start = (page - 1) * 10 + 1
-      let end = start + 10
-      
-      ctx.body = Comment.getAll(el => el.postId === postId && el.id > start && el.id < end)
+  
+  .get('/comment/:page', async (ctx) => {
+    store.dispatch({type: 'setEntries', page: ctx.params.page))
+    ctx.body = store.getState().toObject()
   })
-  .get('/post/search/:phrase', koaBody, async (ctx, next) => {
-      ctx.body = await product.create(ctx.params.phrase)
+  
+  .get('/search/:phrase', async (ctx) => {
+    store.dispatch({type: 'searchEntries'})
+    ctx.body = store.getState().toObject()
   })
 
 exports.routes = () => router.routes()
