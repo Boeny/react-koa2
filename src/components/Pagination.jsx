@@ -41,7 +41,7 @@ class Pagination extends React.PureComponent
             
             return empty ? <div key={i} className="page">...</div> : (
               <div
-                onClick={this.props.onClickHandler(i)}
+                onClick={this.props.getClickHandler(i)}
                 key={i}
                 className={'page ' + (i == active ? 'active' : '')}
               >
@@ -56,7 +56,7 @@ class Pagination extends React.PureComponent
 }
 
 Pagination.propTypes = {
-  onClickHandler: PropTypes.func,
+  getClickHandler: PropTypes.func,
   active: PropTypes.number,
   count: PropTypes.number
 }

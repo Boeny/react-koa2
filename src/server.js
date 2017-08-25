@@ -3,13 +3,15 @@ global.SRC = __dirname + '/';
 const Koa    = require('koa')
 const error  = require('./middle/error')
 const config = require('./config')
-const socket = require('./socket');
-const {routes, allowedMethods} = require('./middle/router')
+const {routes, allowedMethods, socketRoutes} = require('./middle/router')
 
-let server = new Koa()
+const koa = require('koa.io');
+const server = koa();
+
 server.use(error)
 server.use(routes())
 server.use(allowedMethods())
 
-server = socket(server)
-server.listen(config.server.port)
+socketRoutes(server.io.route)// router for socket event
+
+server.listen(config.server.port);
