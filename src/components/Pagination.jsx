@@ -1,34 +1,64 @@
-class PaginationAdvanced {
-  constructor() {
-    this.handleSelect = ::this.handleSelect
+import React from 'react'
+import PropTypes from 'prop-types'
+
+class Pagination extends React.PureComponent
+{
+  constructor(props) {
+    super(props)
+    this.range = 2
   }
   
-  getInitialState() {
-    return {
-      activePage: 1
+  inRange(n, min, max) {
+    return n >= min && n <= max
+  }
+  
+  map(start, end, callback) {
+    let result = []
+    
+    for (let i = start; i <= end; i++){
+      result.push( callback(i) )
     }
+    
+    return result
   }
-
-  handleSelect(eventKey) {
-    this.setState({
-      activePage: eventKey
-    })
+  
+  isEmpty(i, start, end, active) {
+    return this.inRange(i, start + 1, end - 1) && !this.inRange(i, active - this.range, active + this.range)
   }
-
+  
   render() {
+    let active = this.props.active
+    let empty = false
+    
     return (
-      <Pagination
-        prev
-        next
-        first
-        last
-        ellipsis
-        boundaryLinks
-        items={20}
-        maxButtons={5}
-        activePage={this.state.activePage}
-        onSelect={this.handleSelect}
-      />
+      <div className="paginator">
+        {
+          this.map(1, this.props.count, i => {
+            let nextIsEmpty = this.isEmpty(i, 1, this.props.count, active)
+            if (empty && nextIsEmpty) return null
+            
+            empty = nextIsEmpty
+            
+            return empty ? <div key={i} className="page">...</div> : (
+              <div
+                onClick={this.props.onClickHandler(i)}
+                key={i}
+                className={'page ' + (i == active ? 'active' : '')}
+              >
+                {i}
+              </div>
+            )
+          })
+        }
+      </div>
     )
   }
 }
+
+Pagination.propTypes = {
+  onClickHandler: PropTypes.func,
+  active: PropTypes.number,
+  count: PropTypes.number
+}
+
+export default Pagination

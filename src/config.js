@@ -5,7 +5,7 @@ module.exports = {
   },
   
   data: {
-    url: 'http://jsonplaceholder.typicode.com/comments'
+    url: 'http://jsonplaceholder.typicode.com/comments',
     pageSize: 15
   },
   

@@ -3,27 +3,29 @@ const Router = require('koa-router')
 const store  = require('./store')
 const config = require(SRC + 'config')
 
-require('./store/configure')(store)
+const getState = require('./store/configure')(store)
 
 const router = new Router()
 
 router
   .get('/', async (ctx) => {
-    ctx.body = routes.mainContent()
+    console.log('GET request main template')
+    ctx.body = routes.mainContent( getState() )
   })
   
   .get('/index.js', async (ctx) => {
+    console.log('GET request for main js bundle')
     ctx.body = routes.bundle()
   })
   
   .get('/comment/:page', async (ctx) => {
-    store.dispatch({type: 'setEntries', page: ctx.params.page))
-    ctx.body = store.getState().toObject()
+    store.dispatch({type: 'setEntries', page: ctx.params.page})
+    ctx.body = getState()
   })
   
   .get('/search/:phrase', async (ctx) => {
     store.dispatch({type: 'searchEntries'})
-    ctx.body = store.getState().toObject()
+    ctx.body = getState()
   })
 
 exports.routes = () => router.routes()

@@ -14,14 +14,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Comment = require('./Comment');
-
-var _Comment2 = _interopRequireDefault(_Comment);
-
-var _Pagination = require('./Pagination');
-
-var _Pagination2 = _interopRequireDefault(_Pagination);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,46 +22,42 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
+var Comment = function (_React$PureComponent) {
+  _inherits(Comment, _React$PureComponent);
 
-  function App(props) {
-    _classCallCheck(this, App);
+  function Comment(props) {
+    _classCallCheck(this, Comment);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Comment.__proto__ || Object.getPrototypeOf(Comment)).call(this, props));
 
-    _this.changePage = _this.changePage.bind(_this);
+    _this.fields = ['postId', 'id', 'name', 'email', 'body'];
     return _this;
   }
 
-  _createClass(App, [{
-    key: 'changePage',
-    value: function changePage(page) {
-      return function () {
-        console.log(page);
-      };
-    }
-  }, {
+  _createClass(Comment, [{
     key: 'render',
     value: function render() {
-      var state = this.props.state;
+      var row = this.props.data;
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Pagination2.default, { active: state.page, count: state.pageCount, onClickHandler: this.changePage }),
-        state.data.map(function (row) {
-          return _react2.default.createElement(_Comment2.default, { key: row.id, data: row });
+        { key: row.id, className: 'comment' },
+        this.fields.map(function (f) {
+          return _react2.default.createElement(
+            'div',
+            { key: f, className: f },
+            row[f]
+          );
         })
       );
     }
   }]);
 
-  return App;
-}(_react2.default.Component);
+  return Comment;
+}(_react2.default.PureComponent);
 
-App.propTypes = {
-  state: _propTypes2.default.object
+Comment.propTypes = {
+  data: _propTypes2.default.object
 };
 
-exports.default = App;
+exports.default = Comment;

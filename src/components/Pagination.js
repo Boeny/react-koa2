@@ -14,14 +14,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Comment = require('./Comment');
-
-var _Comment2 = _interopRequireDefault(_Comment);
-
-var _Pagination = require('./Pagination');
-
-var _Pagination2 = _interopRequireDefault(_Pagination);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,46 +22,81 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
+var Pagination = function (_React$PureComponent) {
+  _inherits(Pagination, _React$PureComponent);
 
-  function App(props) {
-    _classCallCheck(this, App);
+  function Pagination(props) {
+    _classCallCheck(this, Pagination);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call(this, props));
 
-    _this.changePage = _this.changePage.bind(_this);
+    _this.range = 2;
     return _this;
   }
 
-  _createClass(App, [{
-    key: 'changePage',
-    value: function changePage(page) {
-      return function () {
-        console.log(page);
-      };
+  _createClass(Pagination, [{
+    key: 'inRange',
+    value: function inRange(n, min, max) {
+      return n >= min && n <= max;
+    }
+  }, {
+    key: 'map',
+    value: function map(start, end, callback) {
+      var result = [];
+
+      for (var i = start; i <= end; i++) {
+        result.push(callback(i));
+      }
+
+      return result;
+    }
+  }, {
+    key: 'isEmpty',
+    value: function isEmpty(i, start, end, active) {
+      return this.inRange(i, start + 1, end - 1) && !this.inRange(i, active - this.range, active + this.range);
     }
   }, {
     key: 'render',
     value: function render() {
-      var state = this.props.state;
+      var _this2 = this;
+
+      var active = this.props.active;
+      var empty = false;
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Pagination2.default, { active: state.page, count: state.pageCount, onClickHandler: this.changePage }),
-        state.data.map(function (row) {
-          return _react2.default.createElement(_Comment2.default, { key: row.id, data: row });
+        { className: 'paginator' },
+        this.map(1, this.props.count, function (i) {
+          var nextIsEmpty = _this2.isEmpty(i, 1, _this2.props.count, active);
+          if (empty && nextIsEmpty) return null;
+
+          empty = nextIsEmpty;
+
+          return empty ? _react2.default.createElement(
+            'div',
+            { key: i, className: 'page' },
+            '...'
+          ) : _react2.default.createElement(
+            'div',
+            {
+              onClick: _this2.props.onClickHandler(i),
+              key: i,
+              className: 'page ' + (i == active ? 'active' : '')
+            },
+            i
+          );
         })
       );
     }
   }]);
 
-  return App;
-}(_react2.default.Component);
+  return Pagination;
+}(_react2.default.PureComponent);
 
-App.propTypes = {
-  state: _propTypes2.default.object
+Pagination.propTypes = {
+  onClickHandler: _propTypes2.default.func,
+  active: _propTypes2.default.number,
+  count: _propTypes2.default.number
 };
 
-exports.default = App;
+exports.default = Pagination;

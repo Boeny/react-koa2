@@ -48,11 +48,5 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.1",
     "webpack": "^3.5.4"
-  },
-  "babel": {
-    "presets": [
-      "react",
-      "es2015"
-    ]
   }
 }

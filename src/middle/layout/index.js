@@ -7,9 +7,10 @@ module.exports = {
     return readFileSync(layouts.main);
   },
   
-  replace(template, state = '', app = '') {
+  replace(template, params = {}) {
+    for (let placeholder in params){
+      template = template.replace('{{'+placeholder+'}}', params[placeholder])
+    }
     return template
-      .replace('{{INITIAL_STATE}}', JSON.stringify(state))
-      .replace('{{app}}', app)
   }
 }

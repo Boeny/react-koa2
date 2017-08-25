@@ -1,4 +1,4 @@
 module.exports = {
-  mainContent: require('./mainContent')
+  mainContent: require('./mainContent'),
   bundle: require('./bundle')
 }
