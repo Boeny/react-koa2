@@ -32,3 +32,20 @@ body * {
 .comment .body {
   width: 500px;
 }
+
+.paginator {
+  height: 25px;
+}
+.page {
+  float: left;
+  width: 33px;
+  height: 25px;
+  line-height: 24px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+.page.active {
+  background: #5b5fe2;
+  color: #fff;
+}

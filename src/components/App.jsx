@@ -1,33 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import Comment from './Comment'
+import Pagination from './Pagination'
 
 class App extends React.Component
 {
-  static get propTypes() {
-    data: PropTypes.Array
-  }
-
   constructor(props) {
     super(props)
-    this.fields = ['postId', 'id', 'name', 'email', 'body']
+    this.state = {...props}
+    this.pageChanger = this.pageChanger.bind(this)
   }
-
+  
+  setPage(page) {
+    if (this.state.page === page) return
+    
+    this.props.changePageRequest(page).then(state => {
+      this.setState({
+        page: page,
+        data: state.data
+      });
+    })
+  }
+  
+  pageChanger(page) {
+    return () => this.setPage(page)
+  }
+  
   render() {
     return (
       <div className='container'>
-        {
-        this.props.data.map((row) => {
-          return (
-            <div key={row.id} className='comment'>
-              { this.fields.map((f) => <div key={f} className={f}>{ row[f] }</div>) }
-            </div>
-          )
-        })
-      }
+        <Pagination active={this.state.page} count={this.state.pageCount} onClickHandler={this.pageChanger} />
+        { this.state.data.map(row => <Comment key={'comment'+row.id} data={row}/>) }
       </div>
     )
   }
 }
 
-export default connect(state => ({data: state.toArray()}))(App)// mapStateToProps
+App.propTypes = {
+  data: PropTypes.array,
+  page: PropTypes.number,
+  pageCount: PropTypes.number
+}
+
+export default App

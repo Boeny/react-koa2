@@ -1,16 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from '../components/App'
-import {Provider} from 'react-redux'
-import store from '../middle/store'
 
 require('./style.css')
 
-store.dispatch({type: 'setEntries', data: INITIAL_STATE})
+INITIAL_STATE = {
+  ...INITIAL_STATE,
+  changePageRequest: page => fetch('/comment/'+page).then(res => res.json())
+}
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <App {...INITIAL_STATE} />,
   document.getElementById('app')
 )

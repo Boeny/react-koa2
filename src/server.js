@@ -1,17 +1,18 @@
-var io = require('koa-socket.io')
+global.SRC = `${__dirname}/`
+
 const Koa = require('koa')
-const http = require('http')
-const config = require('./config')
 const error = require('./middle/error')
-const {routes, allowedMethods} = require('./middle/routes')
+const config = require('./config')
+const { routes, allowedMethods, socketRoutes } = require('./middle/router')
+const http = require('http')
 
-io = new io({namespace: '/'})
 const app = new Koa()
-
 app.use(error)
 app.use(routes())
 app.use(allowedMethods())
 
-const server = http.createServer(app.callback())
-io.start(server)
-server.listen(config.port)
+http
+  .createServer(app.callback())
+  .listen(config.server.port, () => {
+    console.log(`server running on port ${config.server.port}`)
+  })

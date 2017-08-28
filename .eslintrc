@@ -1,12 +1,8 @@
 {
   "extends": [
-    "./index.js",
-    'eslint-config-airbnb-base',
-    'eslint-config-airbnb-base/rules/strict',
-    './rules/react',
-    './rules/react-a11y',
-  ].map(require.resolve),
-  "rules": {
-    "comma-dangle": 0
-  }
+    "eslint-config-airbnb",
+    "eslint-config-airbnb-base",
+    "eslint-config-standard",
+    "eslint-config-standard-jsx"
+  ]
 }

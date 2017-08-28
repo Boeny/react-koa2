@@ -1,3 +1,5 @@
 /node_modules/
-*.map
+/dist/
+/src/components/*.js
+/src/middle/app/*.js
 npm-debug.log
