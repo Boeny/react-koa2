@@ -1,13 +1,9 @@
-const layout = require(SRC + 'middle/layout')
-const app    = require(SRC + 'middle/app')
+const layout = require(`${SRC}middle/layout`)
+const app = require(`${SRC}middle/app`)
 
-let content = layout.getFromFile()
+const content = layout.getFromFile()
 
-module.exports = (state) => {
-  delete state.all
-  
-  return layout.replace(content, {
-    INITIAL_STATE: JSON.stringify(state),
-    app: app(state)
-  })
-}
+module.exports = state => layout.replace(content, {
+  INITIAL_STATE: JSON.stringify(state),
+  app: app(state)
+})

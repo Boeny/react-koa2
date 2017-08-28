@@ -4,20 +4,9 @@ import App from '../components/App'
 
 require('./style.css')
 
-const socket = io()// self connect
-
-function onPageChange(callback) {
-  socket.on('pageHasChanged', callback)
-}
-
-function changePageRequest(page) {
-  socket.emit('/comment/'+page)
-}
-
 INITIAL_STATE = {
   ...INITIAL_STATE,
-  onPageChange,
-  changePageRequest
+  changePageRequest: page => fetch('/comment/'+page).then(res => res.json())
 }
 
 ReactDOM.render(

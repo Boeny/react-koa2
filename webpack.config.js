@@ -1,4 +1,3 @@
-const Uglify = require('uglifyjs-webpack-plugin')
 var path = require('path')
 
 function resolve (dir) {
@@ -23,10 +22,6 @@ module.exports = {
       }
     ]
   },
-
-  plugins: [
-    //new Uglify()
-  ],
 
   devtool: 'source-map',
 

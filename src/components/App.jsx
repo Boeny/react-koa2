@@ -7,24 +7,30 @@ class App extends React.Component
 {
   constructor(props) {
     super(props)
+    this.state = {...props}
     this.pageChanger = this.pageChanger.bind(this)
   }
   
-  pageChanger(page) {
-    return () => this.props.changePageRequest(page)
+  setPage(page) {
+    if (this.state.page === page) return
+    
+    this.props.changePageRequest(page).then(state => {
+      this.setState({
+        page: page,
+        data: state.data
+      });
+    })
   }
   
-  componentDidMount(){
-    this.props.onPageChanged(state => {
-      this.setState(state);
-    });
+  pageChanger(page) {
+    return () => this.setPage(page)
   }
   
   render() {
     return (
       <div className='container'>
-        <Pagination active={this.props.page} count={this.props.pageCount} getClickHandler={this.pageChanger} />
-        { this.props.data.map(row => <Comment key={row.id} data={row}/>) }
+        <Pagination active={this.state.page} count={this.state.pageCount} onClickHandler={this.pageChanger} />
+        { this.state.data.map(row => <Comment key={'comment'+row.id} data={row}/>) }
       </div>
     )
   }

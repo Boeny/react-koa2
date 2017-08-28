@@ -12,8 +12,8 @@ class Comment extends React.PureComponent
     let row = this.props.data
     
     return (
-      <div key={row.id} className='comment'>
-        { this.fields.map((f) => <div key={f} className={f}>{ row[f] }</div>) }
+      <div className='comment'>
+        { this.fields.map((f) => <div key={row.id + f} className={f}>{ row[f] }</div>) }
       </div>
     )
   }

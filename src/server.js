@@ -1,17 +1,18 @@
-global.SRC = __dirname + '/';
+global.SRC = `${__dirname}/`
 
-const Koa    = require('koa')
-const error  = require('./middle/error')
+const Koa = require('koa')
+const error = require('./middle/error')
 const config = require('./config')
-const {routes, allowedMethods, socketRoutes} = require('./middle/router')
+const { routes, allowedMethods, socketRoutes } = require('./middle/router')
+const http = require('http')
 
-const koa = require('koa.io');
-const server = koa();
+const app = new Koa()
+app.use(error)
+app.use(routes())
+app.use(allowedMethods())
 
-server.use(error)
-server.use(routes())
-server.use(allowedMethods())
-
-socketRoutes(server.io.route)// router for socket event
-
-server.listen(config.server.port);
+http
+  .createServer(app.callback())
+  .listen(config.server.port, () => {
+    console.log(`server running on port ${config.server.port}`)
+  })

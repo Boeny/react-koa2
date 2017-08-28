@@ -1,16 +1,18 @@
-const store  = require('./store')
+const store = require('./store')
 const getState = require('./store/configure')(store)
+const { setPageAction, searchAction } = require('./store/actions')
 
-//-------------------------------------- init
+// -------------------------------------- ssr
 
 const routes = require('./routes')
 const Router = require('koa-router')
+
 const router = new Router()
 
 router
   .get('/', async (ctx) => {
     console.log('GET request main template')
-    ctx.body = routes.mainContent( getState() )
+    ctx.body = routes.mainContent(getState())
   })
 
   .get('/index.js', async (ctx) => {
@@ -18,23 +20,19 @@ router
     ctx.body = routes.bundle()
   })
 
+  .get('/comment/:page', async (ctx) => {
+    const page = ctx.params.page
+    console.log(`GET request for page ${page}`)
+    store.dispatch(setPageAction(page))
+    ctx.body = getState()
+  })
+
+  .get('/search/:phrase', async (ctx) => {
+    const phrase = ctx.params.phrase
+    console.log('GET request for %s page', phrase)
+    store.dispatch(searchAction(phrase))
+    ctx.body = getState()
+  })
+
 exports.routes = () => router.routes()
 exports.allowedMethods = () => router.allowedMethods()
-
-//-------------------------------------- api
-
-const send = function(ctx, event, data) {
-  ctx.broadcast.emit(event, data)
-}
-
-exports.socketRoutes = (route) => {
-  route('/comment/:page', async () => {
-    store.dispatch({type: 'setEntries', page: this.args[0]})
-    send( this, 'pageHasChanged', getState() )
-  })
-
-  route('/search/:phrase', async () => {
-    store.dispatch({type: 'searchEntries'})
-    send( this, 'found', getState() )
-  })
-}

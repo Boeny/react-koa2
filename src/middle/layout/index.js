@@ -1,15 +1,16 @@
 const fs = require('fs')
-const {layouts} = require(SRC + 'config');
-const readFileSync = require('readfilesync')(SRC);
+
+const { layouts } = require(`${SRC}config`)
+const readFileSync = require('readfilesync')(SRC)
 
 module.exports = {
-  getFromFile() {
-    return readFileSync(layouts.main);
+  getFromFile () {
+    return readFileSync(layouts.main)
   },
-  
-  replace(template, params = {}) {
-    for (let placeholder in params){
-      template = template.replace('{{'+placeholder+'}}', params[placeholder])
+
+  replace (template, params = {}) {
+    for (const placeholder in params) {
+      template = template.replace(`{{${placeholder}}}`, params[placeholder])
     }
     return template
   }
