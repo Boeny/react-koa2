@@ -1,3 +1,4 @@
-# react-json
+# react-koa2
 
-Just install node modules by typing "npm i", then type "npm start" and go to the localhost:3000
+npm run build && npm start
+then go to the localhost:3000
