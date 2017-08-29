@@ -2,19 +2,23 @@
   "name": "react-json",
   "version": "0.0.2",
   "scripts": {
+    "start": "babel-node src/server.js",
+    "build:dev": "webpack --env=dev && npm start",
+    "build:prod": "webpack --env=prod",
+    
+    "server": "webpack-dev-server --env=server --open",
+    
+    "check": "npm run lint && npm run test",
     "lint": "node ./node_modules/eslint/bin/eslint.js --fix src",
-    "build:index": "webpack",
-    "build:app": "babel --plugins transform-react-jsx src/middle/app/index.jsx -o src/middle/app/index.js",
-    "build:comp": "babel --plugins transform-react-jsx src/components -d src/components",
-    "build": "npm run build:index && npm run build:app && npm run build:comp",
     "test": "mocha src/**/*.spec.js",
-    "start": "node src/server.js"
+    "mutations": "stryker run"
   },
   "dependencies": {
     "autoprefixer": "^7.1.2",
     "immutable": "^3.8.1",
     "koa": "^2.3.0",
     "koa-router": "^7.2.1",
+    "npm": "^5.3.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -30,11 +34,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.1.1",
+    "chai-as-promised": "^7.1.1",
     "css-loader": "^0.28.4",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
@@ -48,6 +55,8 @@
     "stryker-mocha-runner": "^0.6.0",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.1",
-    "webpack": "^3.5.4"
+    "webpack": "^3.5.4",
+    "webpack-dev-server": "^2.6.1",
+    "webpack-merge": "^4.1.0"
   }
 }

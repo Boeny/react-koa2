@@ -42,6 +42,7 @@ body * {
   height: 25px;
   line-height: 24px;
   cursor: pointer;
+  user-select: none;
   text-align: center;
   border: 1px solid #ccc;
 }

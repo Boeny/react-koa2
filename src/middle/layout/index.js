@@ -1,11 +1,9 @@
-const fs = require('fs')
-
-const { layouts } = require(`${SRC}config`)
-const readFileSync = require('readfilesync')(SRC)
+const config = require('config')
+const readFileSync = require('readfilesync')(config.SRC)
 
 module.exports = {
   getFromFile () {
-    return readFileSync(layouts.main)
+    return readFileSync(config.layouts.main)
   },
 
   replace (template, params = {}) {

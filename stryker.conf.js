@@ -1,51 +1,61 @@
+require('babel-core/register')({
+  'presets': ['es2015','stage-0','react']
+})
+
 module.exports = function(config) {
   config.set({
     files: [
       {
-        pattern: 'src/**/tester.js',
+        pattern: 'src/node_modules/*.js',
         mutated: false,
         included: true
       },
+      
       {
-        pattern: 'src/**/*.json',
+        pattern: 'src/config.js',
         mutated: false,
         included: true
       },
 
       {
-        pattern: 'src/**/setEntries.js',
+        pattern: 'src/middle/layout/index.js',
+        mutated: true,
+        included: true
+      },
+      
+      {
+        pattern: 'src/middle/store/configure.js',
+        mutated: true,
+        included: true
+      },
+      
+      {
+        pattern: 'src/middle/store/actions/*.js',
+        mutated: true,
+        included: true
+      },
+      
+      {
+        pattern: 'src/middle/store/reducers/*.js',
         mutated: true,
         included: true
       },
 
-      {
-        pattern: 'src/**/layout.js',
-        mutated: true,
-        included: true
-      },
       {
         pattern: 'src/**/index.html',
         mutated: false,
         included: false
       },
 
-      {
-        pattern: 'src/**/comment.js',
-        mutated: true,
-        included: true
-      },
-      {
-        pattern: 'src/request.js',
-        mutated: false,
-        included: true
-      },
-
       'src/**/*.spec.js'
     ],
+    
     testRunner: 'mocha',
+    
     reporter: [
       'clear-text'
     ],
+    
     coverageAnalysis: 'off',
     plugins: ['stryker-mocha-runner']
   })

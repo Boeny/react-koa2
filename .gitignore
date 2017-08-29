@@ -1,5 +1,4 @@
 /node_modules/
 /dist/
-/src/components/*.js
-/src/middle/app/*.js
-npm-debug.log
+/src/layouts/*.js
+*.log

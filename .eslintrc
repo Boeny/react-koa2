@@ -1,8 +1,7 @@
 {
   "extends": [
-    "eslint-config-airbnb",
-    "eslint-config-airbnb-base",
-    "eslint-config-standard",
-    "eslint-config-standard-jsx"
+    "airbnb",
+    "airbnb-base",
+    "standard"
   ]
 }

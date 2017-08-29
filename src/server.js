@@ -1,10 +1,8 @@
-global.SRC = `${__dirname}/`
-
 const Koa = require('koa')
 const error = require('./middle/error')
-const config = require('./config')
-const { routes, allowedMethods, socketRoutes } = require('./middle/router')
+const config = require('config')
 const http = require('http')
+const { routes, allowedMethods } = require('./middle/router')
 
 const app = new Koa()
 app.use(error)

@@ -1,4 +1,5 @@
 module.exports = {
-  setEntries: require('./setEntries'),
-  searchEntries: require('./searchEntries')
+  initReducer: require('./init'),
+  setPageReducer: require('./setPage'),
+  searchReducer: require('./search')
 }

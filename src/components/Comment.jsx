@@ -1,22 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class Comment extends React.PureComponent
-{
-  constructor(props) {
-    super(props)
-    this.fields = ['postId', 'id', 'name', 'email', 'body']
-  }
+const fields = ['id', 'name', 'email', 'body']
+
+function Comment(props) {
+  let row = props.data
   
-  render() {
-    let row = this.props.data
-    
-    return (
-      <div className='comment'>
-        { this.fields.map((f) => <div key={row.id + f} className={f}>{ row[f] }</div>) }
-      </div>
-    )
-  }
+  return (
+    <div className='comment'>
+      { fields.map((f) => <div key={row.id + f} className={f}>{ row[f] }</div>) }
+    </div>
+  )
 }
 
 Comment.propTypes = {

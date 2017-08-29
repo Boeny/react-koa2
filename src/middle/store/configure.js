@@ -1,21 +1,20 @@
 const request = require('request')
+const config = require('config')
 
-const config = require(`${SRC}config`)
-const { initAction } = require('./actions')
-
-function dispatch (store) {
-  return (data) => {
-    console.log('data has received')
-    store.dispatch(initAction(data, config.data.pageSize))
-  }
+/**
+ * @param {Function} dispatch (action: Function):void
+ * @param {Function} initAction (data: Array, pageSize: Number):Object
+ * @returns {Function} setData (data: Array):void
+ */
+exports.setData = (dispatch, initAction) => (data) => {
+  dispatch(initAction(data, config.data.pageSize))
 }
 
 /**
- * sets the initial state of the store
  * @param {Object} store
- * @returns {function} getState
+ * @returns {Function} getState (void):Object
  */
-module.exports = (store) => {
-  request(config.data.url).then(dispatch(store))
-  return () => store.getState().get('viewData')
-}
+exports.getData = () => request(config.data.url).then((data) => {
+  console.log('data has received')
+  return data
+})
