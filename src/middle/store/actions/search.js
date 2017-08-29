@@ -1,3 +1,5 @@
-module.exports = function (phrase) {
-  return { type: 'searchEntries', phrase }
+const config = require('config')
+
+module.exports = function (phrase, fields, limit = config.data.pageSize) {
+  return { type: 'search', phrase, fields, limit }
 }

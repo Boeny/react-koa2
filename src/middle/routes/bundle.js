@@ -1,6 +1,5 @@
-const readFileSync = require('readfilesync')(SRC)
-
-const config = require(`${SRC}config`)
+const config = require('config')
+const readFileSync = require('readfilesync')(config.SRC)
 
 const js = readFileSync(config.bundle)
 

@@ -1,3 +1,5 @@
+const SRC = require('config').SRC
+
 const layout = require(`${SRC}middle/layout`)
 const app = require(`${SRC}middle/app`)
 

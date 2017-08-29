@@ -1,12 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from '../components/App'
+import request from './request'
 
 require('./style.css')
 
+function changePageRequest(page){
+   return request(`/comment/${page}`)
+}
+
+function searchRequest(phrase) {
+  return request(`/search/${phrase}`)
+}
+
 INITIAL_STATE = {
   ...INITIAL_STATE,
-  changePageRequest: page => fetch('/comment/'+page).then(res => res.json())
+  changePageRequest,
+  searchRequest
 }
 
 ReactDOM.render(

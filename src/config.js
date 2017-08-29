@@ -1,7 +1,9 @@
 // все пути считаются относительно ROOT/src/
 module.exports = {
+  SRC: `${__dirname}/`,
+
   server: {
-    port: 3000
+    port: 80
   },
 
   data: {
