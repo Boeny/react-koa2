@@ -1,5 +1,3 @@
-const { Map } = require('immutable')
-
 function between (start, end) {
   return (el, index) => index >= start && index < end
 }

@@ -8,9 +8,9 @@ const router = new Router()
 const dispatch = ::store.dispatch
 const getState = () => store.getState().get('viewData')
 
-getData().then(data => {
+getData().then((data) => {
   setData(dispatch, initAction)(data)
-  dispatch( setPageAction(1) )
+  dispatch(setPageAction(1))
 })
 
 router
@@ -27,17 +27,17 @@ router
   })
 
   .get('/comment/:page', async (ctx) => {
-    dispatch( setPageAction(ctx.params.page) )
+    dispatch(setPageAction(ctx.params.page))
     ctx.body = getState()
   })
 
   .get('/search/', async (ctx) => {
-    dispatch( searchAction('', ['name', 'email']) )
+    dispatch(searchAction('', ['name', 'email']))
     ctx.body = getState()
   })
-  
+
   .get('/search/:phrase', async (ctx) => {
-    dispatch( searchAction(ctx.params.phrase, ['name', 'email']) )
+    dispatch(searchAction(ctx.params.phrase, ['name', 'email']))
     ctx.body = getState()
   })
 

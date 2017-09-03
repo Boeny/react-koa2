@@ -12,8 +12,8 @@ require('tester')({
         return { type: 'action', data, size }
       }
 
-      function dispatch (action) {
-        result = { dispatch: action }
+      function dispatch (act) {
+        result = { dispatch: act }
       }
 
       setData(dispatch, action)([])

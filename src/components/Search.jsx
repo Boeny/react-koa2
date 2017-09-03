@@ -1,24 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class Search extends React.PureComponent
-{
-  constructor(props) {
+class Search extends React.PureComponent {
+  constructor (props) {
     super(props)
     this.inputListener = ::this.inputListener
   }
 
-  inputListener(e){
-    this.props.onInput(e.target.value)
+  inputListener (e) {
+    if (this.props.onInput) this.props.onInput(e.target.value)
   }
 
-  render(){
+  render () {
     return (
       <div className='search'>
-        <input type="text" onKeyUp={this.inputListener}/>
+        <input type="text" onKeyUp={this.inputListener} />
       </div>
     )
   }
+}
+
+Search.defaultProps = {
+  onInput: null
 }
 
 Search.propTypes = {
