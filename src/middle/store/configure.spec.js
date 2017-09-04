@@ -1,3 +1,5 @@
+/** @namespace test */
+
 const config = require('config')
 const { setData, getData } = require('./configure')
 

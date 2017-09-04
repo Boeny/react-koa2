@@ -1,3 +1,5 @@
+/** @namespace server */
+
 const Router = require('koa-router')
 const routes = require('./routes')
 const store = require('./store')
@@ -8,11 +10,13 @@ const router = new Router()
 const dispatch = ::store.dispatch
 const getState = () => store.getState().get('viewData')
 
+// get data and set the state
 getData().then((data) => {
   setData(dispatch, initAction)(data)
   dispatch(setPageAction(1))
 })
 
+// set the routes
 router
   .get('/', async (ctx) => {
     ctx.body = routes.mainContent(getState())

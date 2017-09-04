@@ -22,6 +22,11 @@ module.exports = (config) => {
         mutated: true,
         included: true
       },
+      {
+        pattern: 'src/middle/layout/replacePlaceholder.js',
+        mutated: true,
+        included: true
+      },
 
       {
         pattern: 'src/middle/store/configure.js',

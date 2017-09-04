@@ -1,3 +1,5 @@
+/** @namespace server */
+
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 

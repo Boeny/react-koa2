@@ -1,3 +1,6 @@
+/** @namespace webpack */
+/** @module webpack/production */
+
 const { defaults, merge } = require('./base')
 
 const dest = defaults.output.path
@@ -17,7 +20,8 @@ fs.readdir(dest, (err, files) => {
 const Uglify = require('uglifyjs-webpack-plugin')
 
 /**
- * merges the base config with uglifying plugin
+ * Adds uglifying plugin
+ * @type {Object}
  */
 module.exports = merge({
   plugins: [

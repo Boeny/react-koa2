@@ -1,3 +1,5 @@
+/** @namespace test */
+
 require('tester')({
   layout: {
     index: {

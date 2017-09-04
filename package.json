@@ -10,7 +10,7 @@
     "lint": "node ./node_modules/eslint/bin/eslint.js --fix src",
     "test": "mocha src/**/*.spec.js",
     "mutations": "stryker run",
-    "doc": "jsdoc src/server.js"
+    "doc": "jsdoc -r -c jsdoc.config.json"
   },
   "dependencies": {
     "autoprefixer": "^7.1.2",

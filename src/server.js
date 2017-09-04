@@ -1,3 +1,5 @@
+/** @namespace server */
+
 const Koa = require('koa')
 const error = require('./middle/error')
 const config = require('config')

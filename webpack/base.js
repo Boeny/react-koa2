@@ -1,3 +1,6 @@
+/** @namespace webpack */
+/** @module webpack/base */
+
 const path = require('path')
 const merge = require('webpack-merge')
 
@@ -7,6 +10,7 @@ function resolve (dir) {
 
 /**
  * The base config
+ * @type {Object}
  */
 exports.defaults = {
   // source index file in the client folder
@@ -42,5 +46,6 @@ exports.defaults = {
 
 /**
  * merges the base config with additional rules
+ * @returns {Object} result config
  */
 exports.merge = config => merge(exports.defaults, config)

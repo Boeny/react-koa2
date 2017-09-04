@@ -1,3 +1,6 @@
+/** @namespace webpack */
+/** @module webpack/devServer */
+
 // preparing the babel for the server side rendering
 require('babel-core/register')({
   presets: ['es2015', 'stage-0', 'react']
@@ -32,7 +35,8 @@ const webpack = require('webpack')
 fs.writeFileSync(`${defaults.output.path}/index.html`, content, 'utf-8')
 
 /**
- * adds dev server config with hot module replacement
+ * Adds dev server config with hot module replacement
+ * @type {Object}
  */
 module.exports = merge({
   devServer: {

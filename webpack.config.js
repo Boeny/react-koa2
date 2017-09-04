@@ -1,5 +1,7 @@
+/** @namespace webpack */
+/** @module webpack/config */
 /**
- * uses the webpack/<env>.js config file from "--env" key
+ * Uses the webpack/*.js config file with name from the "--env" key
  * @param {String} env key in npm command
  * @returns {Object} config
  */
