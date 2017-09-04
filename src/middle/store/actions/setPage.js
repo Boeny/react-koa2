@@ -1,4 +1,3 @@
-module.exports = function (page) {
-  page = +page
-  return { type: 'setPage', page }
-}
+/** @namespace actions */
+
+module.exports = page => ({ type: 'setPage', page: parseInt(page, 10) })

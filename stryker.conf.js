@@ -1,8 +1,8 @@
 require('babel-core/register')({
-  'presets': ['es2015','stage-0','react']
+  presets: ['es2015', 'stage-0', 'react']
 })
 
-module.exports = function(config) {
+module.exports = (config) => {
   config.set({
     files: [
       {
@@ -10,7 +10,7 @@ module.exports = function(config) {
         mutated: false,
         included: true
       },
-      
+
       {
         pattern: 'src/config.js',
         mutated: false,
@@ -22,19 +22,24 @@ module.exports = function(config) {
         mutated: true,
         included: true
       },
-      
+      {
+        pattern: 'src/middle/layout/replacePlaceholder.js',
+        mutated: true,
+        included: true
+      },
+
       {
         pattern: 'src/middle/store/configure.js',
         mutated: true,
         included: true
       },
-      
+
       {
         pattern: 'src/middle/store/actions/*.js',
         mutated: true,
         included: true
       },
-      
+
       {
         pattern: 'src/middle/store/reducers/*.js',
         mutated: true,
@@ -49,13 +54,13 @@ module.exports = function(config) {
 
       'src/**/*.spec.js'
     ],
-    
+
     testRunner: 'mocha',
-    
+
     reporter: [
       'clear-text'
     ],
-    
+
     coverageAnalysis: 'off',
     plugins: ['stryker-mocha-runner']
   })

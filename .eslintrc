@@ -3,5 +3,13 @@
     "airbnb",
     "airbnb-base",
     "standard"
-  ]
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/no-dynamic-require": "off",
+    "global-require": "off",
+    "no-console": "off",
+    "no-new": "off"
+  }
 }

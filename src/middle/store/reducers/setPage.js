@@ -1,4 +1,4 @@
-const { Map } = require('immutable')
+/** @namespace reducers */
 
 function between (start, end) {
   return (el, index) => index >= start && index < end

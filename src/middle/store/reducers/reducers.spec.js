@@ -1,3 +1,5 @@
+/** @namespace test */
+
 const { Map } = require('immutable')
 const { initReducer, setPageReducer, searchReducer } = require('./index')
 

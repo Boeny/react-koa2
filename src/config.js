@@ -1,4 +1,10 @@
-// все пути считаются относительно ROOT/src/
+/** @namespace server */
+/** @module config */
+/**
+ * Configuration of the project
+ * all paths are related to ROOT/src/
+ * @type {Object}
+ */
 module.exports = {
   SRC: `${__dirname}/`,
 

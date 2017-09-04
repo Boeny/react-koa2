@@ -1,4 +1,6 @@
-module.exports = function (data, pageSize) {
+/** @namespace actions */
+
+module.exports = (data, pageSize) => {
   const count = Object.keys(data).length
   const pageCount = count ? count / pageSize : 1
 

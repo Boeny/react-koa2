@@ -1,5 +1,5 @@
+/** @namespace actions */
+
 const config = require('config')
 
-module.exports = function (phrase, fields, limit = config.data.pageSize) {
-  return { type: 'search', phrase, fields, limit }
-}
+module.exports = (phrase, fields, limit = config.data.pageSize) => ({ type: 'search', phrase, fields, limit })

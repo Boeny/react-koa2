@@ -1,3 +1,5 @@
+/** @namespace reducers */
+
 const { Map } = require('immutable')
 
 module.exports = (state, action) => {

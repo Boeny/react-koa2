@@ -1,3 +1,5 @@
+/** @namespace test */
+
 const { initAction, setPageAction, searchAction } = require('./index')
 
 require('tester')({

@@ -1,5 +1,7 @@
+/** @namespace reducers */
+
 function searchInFieldsBy (el, fields, phrase) {
-  for (let i = 0; i < fields.length; i++) {
+  for (let i = 0; i < fields.length; i += 1) {
     const field = fields[i]
 
     if (el[field].indexOf(phrase) > -1) {
