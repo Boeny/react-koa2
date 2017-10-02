@@ -3,7 +3,7 @@
 Pagination and searching the comments by its author's name or email. Tests and docs are included
 
     npm run doc
-to create documentation (found in "/out" folder)
+to create documentation (will be found in "/out" folder)
 
     npm start
 to start the server (port 80)
