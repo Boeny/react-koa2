@@ -1,6 +1,6 @@
 # react-koa2
 
-Pagination and search comments by name or email. Tests and docs are included
+Pagination and searching the comments by its author's name or email. Tests and docs are included
 
     npm run doc
 to create documentation (found in "/out" folder)
